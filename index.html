@@ -1,0 +1,387 @@
+﻿<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Apex Institute - Online Student Admission Portal</title>
+  <!-- Google Fonts: Outfit & DM Sans -->
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=DM+Sans:ital,opsz,wght@0,9..40,400;0,9..40,500;0,9..40,600;0,9..40,700;1,9..40,400&family=Outfit:wght@500;600;700;800&display=swap" rel="stylesheet">
+  <!-- Font Awesome -->
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css">
+  <link rel="stylesheet" href="style.css">
+</head>
+<body>
+
+  <!-- Top Navigation Bar -->
+  <header class="site-nav no-print">
+    <div class="nav-inner">
+      <div class="institution-branding">
+        <div class="crest-icon">
+          <i class="fa-solid fa-building-columns"></i>
+        </div>
+        <div class="branding-info">
+          <h1 class="inst-name">APEX INSTITUTE</h1>
+          <span class="inst-tagline">College of Engineering & Technology</span>
+        </div>
+      </div>
+      <div class="admission-status">
+        <span class="status-pill"><i class="fa-solid fa-circle-dot"></i> Admissions Open 2026-2027</span>
+      </div>
+    </div>
+  </header>
+
+  <main class="page-container">
+    <div class="wrapper">
+
+      <!-- ============================================== -->
+      <!-- SECTION 1: CANDIDATE REGISTRATION FORM         -->
+      <!-- ============================================== -->
+      <section id="registrationCard" class="main-card no-print">
+        
+        <div class="card-intro">
+          <div class="intro-badge"><i class="fa-solid fa-pen-nib"></i> FORM ADM-01</div>
+          <h2 class="form-heading">Online Candidate Enrollment Form</h2>
+          <p class="form-subtext">Fill in the candidate credentials below. All mandatory fields marked with an asterisk (<span class="req">*</span>) must be completed before submission.</p>
+        </div>
+
+        <!-- Notification Banner -->
+        <div id="statusNotice" class="notice-box d-none">
+          <i class="notice-icon fa-solid fa-triangle-exclamation"></i>
+          <span class="notice-text"></span>
+        </div>
+
+        <form id="enrolmentForm" action="process.php" method="POST" novalidate>
+          
+          <!-- Category 1: Personal Profile -->
+          <div class="form-category">
+            <div class="category-header">
+              <span class="step-num">01</span>
+              <h3>Applicant Personal Particulars</h3>
+            </div>
+            
+            <div class="input-grid">
+              
+              <div class="field-item">
+                <label for="fullName">Candidate's Full Name <span class="req">*</span></label>
+                <div class="field-box">
+                  <i class="fa-regular fa-user field-icon"></i>
+                  <input type="text" id="fullName" name="fullName" placeholder="e.g. Abhijeet Kumar" required>
+                </div>
+                <span class="validation-note" id="fullNameErr"></span>
+              </div>
+
+              <div class="field-item">
+                <label for="emailAddr">Primary Email ID <span class="req">*</span></label>
+                <div class="field-box">
+                  <i class="fa-regular fa-envelope field-icon"></i>
+                  <input type="email" id="emailAddr" name="emailAddr" placeholder="e.g. abhijeet.kumar@gmail.com" required>
+                </div>
+                <span class="validation-note" id="emailAddrErr"></span>
+              </div>
+
+              <div class="field-item">
+                <label for="mobileNo">Mobile / WhatsApp Number <span class="req">*</span></label>
+                <div class="field-box">
+                  <i class="fa-solid fa-mobile-screen-button field-icon"></i>
+                  <input type="tel" id="mobileNo" name="mobileNo" placeholder="10-digit number" maxlength="10" required>
+                </div>
+                <span class="validation-note" id="mobileNoErr"></span>
+              </div>
+
+              <div class="field-item">
+                <label for="birthDate">Date of Birth <span class="req">*</span></label>
+                <div class="field-box">
+                  <i class="fa-regular fa-calendar-days field-icon"></i>
+                  <input type="date" id="birthDate" name="birthDate" required>
+                </div>
+                <span class="validation-note" id="birthDateErr"></span>
+              </div>
+
+              <div class="field-item full-width">
+                <label>Gender Identification <span class="req">*</span></label>
+                <div class="segmented-picker">
+                  <label class="segment-opt">
+                    <input type="radio" name="gender" value="Male" required>
+                    <span class="segment-btn"><i class="fa-solid fa-mars"></i> Male</span>
+                  </label>
+                  <label class="segment-opt">
+                    <input type="radio" name="gender" value="Female">
+                    <span class="segment-btn"><i class="fa-solid fa-venus"></i> Female</span>
+                  </label>
+                  <label class="segment-opt">
+                    <input type="radio" name="gender" value="Other">
+                    <span class="segment-btn"><i class="fa-solid fa-genderless"></i> Other</span>
+                  </label>
+                </div>
+                <span class="validation-note" id="genderErr"></span>
+              </div>
+
+            </div>
+          </div>
+
+          <!-- Category 2: Academic Program & Prior Education -->
+          <div class="form-category">
+            <div class="category-header">
+              <span class="step-num">02</span>
+              <h3>Academic Stream & Educational Background</h3>
+            </div>
+
+            <div class="input-grid">
+
+              <div class="field-item">
+                <label for="courseStream">Target Degree Program <span class="req">*</span></label>
+                <div class="field-box">
+                  <i class="fa-solid fa-microchip field-icon"></i>
+                  <select id="courseStream" name="courseStream" required>
+                    <option value="" disabled selected>-- Choose Academic Degree --</option>
+                    <option value="B.Tech in Artificial Intelligence & Machine Learning">B.Tech - Artificial Intelligence & Machine Learning</option>
+                    <option value="B.Tech in Computer Science & Engineering">B.Tech - Computer Science & Engineering</option>
+                    <option value="B.Tech in Information Technology">B.Tech - Information Technology</option>
+                    <option value="B.Sc in Data Science & Cloud Computing">B.Sc - Data Science & Cloud Computing</option>
+                    <option value="Master of Technology (M.Tech Software Systems)">Master of Technology (M.Tech)</option>
+                  </select>
+                </div>
+                <span class="validation-note" id="courseStreamErr"></span>
+              </div>
+
+              <div class="field-item">
+                <label for="prevLevel">Qualifying Exam Passed <span class="req">*</span></label>
+                <div class="field-box">
+                  <i class="fa-solid fa-certificate field-icon"></i>
+                  <select id="prevLevel" name="prevLevel" required>
+                    <option value="" disabled selected>-- Select Qualification --</option>
+                    <option value="Class 12th / Senior Secondary (Science)">Class 12th / Senior Secondary (Science)</option>
+                    <option value="Polytechnic Diploma (3-Year Technical)">Polytechnic Diploma (3-Year Technical)</option>
+                    <option value="Undergraduate Degree (BCA / B.Sc / B.E.)">Undergraduate Degree (BCA / B.Sc / B.E.)</option>
+                    <option value="Postgraduate Degree">Postgraduate Degree</option>
+                  </select>
+                </div>
+                <span class="validation-note" id="prevLevelErr"></span>
+              </div>
+
+              <div class="field-item">
+                <label for="scorePercentage">Aggregate Marks / CGPA (%) <span class="req">*</span></label>
+                <div class="field-box">
+                  <i class="fa-solid fa-percent field-icon"></i>
+                  <input type="text" id="scorePercentage" name="scorePercentage" placeholder="e.g. 85.50%" required>
+                </div>
+                <span class="validation-note" id="scorePercentageErr"></span>
+              </div>
+
+              <div class="field-item">
+                <label for="passingYear">Passing Out Year <span class="req">*</span></label>
+                <div class="field-box">
+                  <i class="fa-regular fa-clock field-icon"></i>
+                  <select id="passingYear" name="passingYear" required>
+                    <option value="" disabled selected>-- Select Year --</option>
+                    <option value="2026">2026 (Appearing / Passed)</option>
+                    <option value="2025">2025</option>
+                    <option value="2024">2024</option>
+                    <option value="2023">2023</option>
+                  </select>
+                </div>
+                <span class="validation-note" id="passingYearErr"></span>
+              </div>
+
+            </div>
+          </div>
+
+          <!-- Category 3: Contact Address -->
+          <div class="form-category">
+            <div class="category-header">
+              <span class="step-num">03</span>
+              <h3>Residential Address & Communication</h3>
+            </div>
+
+            <div class="input-grid">
+
+              <div class="field-item full-width">
+                <label for="streetAddress">Full Street / Postal Address <span class="req">*</span></label>
+                <div class="field-box">
+                  <i class="fa-solid fa-location-arrow field-icon"></i>
+                  <input type="text" id="streetAddress" name="streetAddress" placeholder="Flat No, Building, Street, Landmark" required>
+                </div>
+                <span class="validation-note" id="streetAddressErr"></span>
+              </div>
+
+              <div class="field-item">
+                <label for="cityTown">City / District <span class="req">*</span></label>
+                <div class="field-box">
+                  <i class="fa-solid fa-city field-icon"></i>
+                  <input type="text" id="cityTown" name="cityTown" placeholder="e.g. Bangalore" required>
+                </div>
+                <span class="validation-note" id="cityTownErr"></span>
+              </div>
+
+              <div class="field-item">
+                <label for="postalIndex">Postal PIN Code <span class="req">*</span></label>
+                <div class="field-box">
+                  <i class="fa-solid fa-signs-post field-icon"></i>
+                  <input type="text" id="postalIndex" name="postalIndex" placeholder="6-digit PIN" maxlength="6" required>
+                </div>
+                <span class="validation-note" id="postalIndexErr"></span>
+              </div>
+
+              <div class="field-item full-width">
+                <label for="careerNote">Aspirational Note / Statement of Purpose (Optional)</label>
+                <textarea id="careerNote" name="careerNote" rows="3" placeholder="Briefly state your technical interests, project achievements or motivation..."></textarea>
+              </div>
+
+            </div>
+          </div>
+
+          <!-- Legal Consent -->
+          <div class="consent-container">
+            <label class="custom-chk">
+              <input type="checkbox" id="consentCheck" name="consentCheck" required>
+              <span class="chk-indicator"></span>
+              <span class="chk-caption">
+                I hereby attest that the details provided are genuine and complete. Any incorrect statement shall invalidate my enrollment in accordance with institutional policy.
+              </span>
+            </label>
+            <span class="validation-note" id="consentCheckErr"></span>
+          </div>
+
+          <!-- Controls -->
+          <div class="button-row">
+            <button type="reset" id="clearFormBtn" class="action-btn secondary">
+              <i class="fa-solid fa-arrow-rotate-left"></i> Clear All
+            </button>
+            <button type="submit" id="enrollSubmitBtn" class="action-btn primary">
+              <span class="lbl-normal"><i class="fa-solid fa-circle-check"></i> Submit & Register</span>
+              <span class="lbl-waiting d-none"><i class="fa-solid fa-spinner fa-spin"></i> Validating Record...</span>
+            </button>
+          </div>
+
+        </form>
+      </section>
+
+
+      <!-- ============================================== -->
+      <!-- SECTION 2: ADMISSION ACKNOWLEDGEMENT RECEIPT   -->
+      <!-- Displayed dynamically upon server verification -->
+      <!-- ============================================== -->
+      <section id="receiptCard" class="receipt-section d-none">
+        
+        <div class="banner-success no-print">
+          <div class="banner-glow"><i class="fa-solid fa-circle-check"></i></div>
+          <div>
+            <h3>Candidate Enrolment Successful!</h3>
+            <p>Your admission record has been received and stored by the database server. Keep the enrolment voucher below for orientation.</p>
+          </div>
+        </div>
+
+        <!-- Official Printable Voucher -->
+        <div id="admitVoucher" class="voucher-doc">
+          
+          <div class="voucher-top">
+            <div class="univ-crest">
+              <div class="crest-symbol">
+                <i class="fa-solid fa-landmark"></i>
+              </div>
+              <div class="univ-titles">
+                <h2>APEX INSTITUTE OF TECHNOLOGY & MANAGEMENT</h2>
+                <p>Office of the Board of Technical Admissions & Dean Academic Affairs</p>
+                <span class="voucher-tag">PROVISIONAL ADMISSION ACKNOWLEDGEMENT SLIP</span>
+              </div>
+            </div>
+            
+            <div class="voucher-ref">
+              <div class="barcode-box">
+                <i class="fa-solid fa-barcode barcode-symbol"></i>
+                <span class="ref-code" id="receiptEnrolId">AITM-XXXXXX</span>
+              </div>
+              <div class="ref-stamp">
+                <small>TIMESTAMP:</small>
+                <strong id="receiptDate">--/--/----</strong>
+              </div>
+            </div>
+          </div>
+
+          <div class="voucher-rule"></div>
+
+          <!-- Summary Grid -->
+          <div class="data-table">
+            <div class="table-cell">
+              <span class="col-head"><i class="fa-regular fa-user"></i> Registered Student Name</span>
+              <span class="col-body strong-text" id="receiptName">--</span>
+            </div>
+            <div class="table-cell">
+              <span class="col-head"><i class="fa-regular fa-envelope"></i> Email Identifier</span>
+              <span class="col-body" id="receiptEmail">--</span>
+            </div>
+            <div class="table-cell">
+              <span class="col-head"><i class="fa-solid fa-phone"></i> Contact Mobile</span>
+              <span class="col-body" id="receiptPhone">--</span>
+            </div>
+            <div class="table-cell">
+              <span class="col-head"><i class="fa-regular fa-calendar"></i> Date of Birth & Gender</span>
+              <span class="col-body" id="receiptDobGender">--</span>
+            </div>
+            <div class="table-cell span-two">
+              <span class="col-head"><i class="fa-solid fa-graduation-cap"></i> Enrolled Academic Department</span>
+              <span class="col-body prog-accent" id="receiptCourse">--</span>
+            </div>
+            <div class="table-cell">
+              <span class="col-head"><i class="fa-solid fa-award"></i> Prior Education & Passing Year</span>
+              <span class="col-body" id="receiptQualification">--</span>
+            </div>
+            <div class="table-cell">
+              <span class="col-head"><i class="fa-solid fa-chart-line"></i> Qualifying Score / CGPA</span>
+              <span class="col-body" id="receiptScore">--</span>
+            </div>
+            <div class="table-cell span-two">
+              <span class="col-head"><i class="fa-solid fa-location-dot"></i> Permanent Postal Address</span>
+              <span class="col-body" id="receiptAddress">--</span>
+            </div>
+            <div class="table-cell span-two" id="receiptNoteWrapper">
+              <span class="col-head"><i class="fa-regular fa-message"></i> Statement / Aspirational Note</span>
+              <span class="col-body italic-text" id="receiptNote">--</span>
+            </div>
+          </div>
+
+          <div class="voucher-bottom">
+            <div class="digital-seal">
+              <i class="fa-solid fa-stamp seal-icon"></i>
+              <div class="seal-text">
+                <span class="seal-title">CERTIFIED PROVISIONAL ENROLMENT</span>
+                <span class="seal-desc">Digital Authentication Stamp: <strong id="receiptTimestamp">--</strong></span>
+              </div>
+            </div>
+            <div class="dean-sign">
+              <div class="signature-line"></div>
+              <span>Registrar & Admissions Controller</span>
+            </div>
+          </div>
+
+        </div>
+
+        <!-- Controls -->
+        <div class="bottom-tools no-print">
+          <button type="button" id="printReceiptBtn" class="action-btn primary">
+            <i class="fa-solid fa-print"></i> Print Voucher / Download PDF
+          </button>
+          <button type="button" id="anotherEnrolmentBtn" class="action-btn secondary">
+            <i class="fa-solid fa-circle-plus"></i> New Application
+          </button>
+        </div>
+
+      </section>
+
+    </div>
+  </main>
+
+  <footer class="site-footer no-print">
+    <div class="footer-wrapper">
+      <p>&copy; 2026 Apex Institute of Technology & Management. Web Application Portal.</p>
+    </div>
+  </footer>
+
+  <!-- jQuery CDN -->
+  <script src="https://code.jquery.com/jquery-3.7.1.min.js"></script>
+  <!-- Client Script -->
+  <script src="script.js"></script>
+</body>
+</html>

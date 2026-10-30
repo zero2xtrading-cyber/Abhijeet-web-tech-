@@ -1,0 +1,9 @@
+﻿services:
+  - type: web
+    name: aitm-admissions-portal
+    runtime: docker
+    plan: free
+    region: frankfurt
+    envVars:
+      - key: PORT
+        value: 80
